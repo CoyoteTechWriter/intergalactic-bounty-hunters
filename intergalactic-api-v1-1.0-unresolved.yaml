@@ -1,0 +1,209 @@
+openapi: 3.0.2
+info:
+  version: '1.0'
+  title: Intergalactic Bounty Hunter Register
+  description: an **official** API for professional, licensed Intergalactic Bounty Hunters under section 17.3 of the Intergalactic Bounty Hunter Act.
+
+paths:
+  /bounty-hunters:
+    get:
+      summary: Retrieve Bounty Hunters
+      description: The Official IBH (Intergalactic Bounty Hunter) Register. Access limited to the authorized parties only!
+      tags: 
+        - Bounty Hunters
+      operationId: getBountyHunter
+      responses: 
+        '200':
+          description: Bounty Hunter(s) found!
+          content: 
+            application/json: 
+              schema:
+                $ref: '#/components/schemas/BountyHunter'
+                
+      parameters:
+        - $ref: '#/components/parameters/bountyHunterId'
+        - $ref: '#/components/parameters/bountyHunterName'
+        - $ref: '#/components/parameters/bountyHunterAge'
+        - $ref: '#/components/parameters/bountyHunterGeneral'
+        - $ref: '#/components/parameters/bountyHunterWeapon'
+        
+    
+    post: 
+      summary: Register a new Bounty Hunter
+      description: Register new Bounty Hunter in the IBH Register. Licensed Hunters only!
+      tags: 
+        - Bounty Hunters
+      operationId: postBountyHunter
+      requestBody: 
+        $ref: "#/components/requestBodies/bountyHunterReqBod"
+
+      responses: 
+        '201':
+          description: Bounty Hunter Posted!
+          headers: 
+            Location:
+              description: Location of the posted Bounty Hunter!
+              schema: 
+                type: string
+                format: uri
+                example: https://example.com/{bountyHunterIdvar}
+        '400':
+          description: Request broken!
+
+  /bounty-hunters/{bountyHunterIdParam}:
+    get: 
+  
+      summary: Get Bounty Hunter by Id
+      description: Get Bounty Hunter by a particular Id number
+      tags: 
+        - Bounty Hunters 
+      operationId: getBountyHunterById
+      parameters: 
+        - $ref: '#/components/parameters/bountyHunterIdParam'
+      responses: 
+        '200':
+          description: "Found!"
+          content: 
+            application/json: 
+              schema: 
+                $ref: '#/components/schemas/BountyHunter'
+    put: 
+      summary: Update Bounty Hunter by Id
+      description: Updating Bounty hunters by their respective Ids
+      tags: 
+        - Bounty Hunters
+      operationId: putBountyHunterById
+      parameters: 
+        - $ref: "#/components/parameters/bountyHunterIdParam"
+      responses: 
+        '200':
+          description: Updated!
+          content: 
+            application/json: 
+              schema: 
+                $ref: '#/components/schemas/BountyHunter'
+        
+    delete: 
+      summary: Retire a Hunter (permanently)
+      description: Get a Hunter off the register and let them enjoy their retirement
+      tags: 
+        - Bounty Hunters
+      operationId: deleteBountyHunterById
+      parameters: 
+        - $ref: "#/components/parameters/bountyHunterIdParam"
+      responses: 
+        '204':
+          description: Deleted!
+          content: 
+            application/json: 
+              schema:
+                $ref: '#/components/schemas/BountyHunter'
+        
+
+components:
+  schemas: 
+    BountyHunter:
+      type: object
+      properties: 
+        bountyHunterId:
+          type: string
+          pattern: ^\d{1,3}$
+          description: ID with 1-3 digits
+          example: 123
+        bountyHunterName:
+          type: string
+          minLength: 5
+          maxLength: 30
+          example: Star Slayer
+          description: 5-30 characters
+        bountyHunterAge:
+          type: integer
+          minimum: 18
+          maximum: 65
+          example: 35
+          description: Can't be younger than 18 and older than 65!
+        bountyHunterGeneral:
+          type: boolean
+          description: Intergalactic Bounty Hunter General Register. Necessary for obtaining a license.
+        bountyHunterWeapon:
+          type: string
+          enum: 
+            - MIND_CONTROL
+            - LASER_EYES
+            - TENTACLES_FOR_ARMS
+            - LASER_GUN
+            - PERSONAL_CHARM
+          example: PERSONAL_CHARM
+  
+  parameters: 
+    bountyHunterId:
+      name: bountyHunterId
+      in: query
+      required: false
+      schema: 
+        type: string
+        pattern: ^\d{1,3}$
+        example: 123
+    bountyHunterIdParam:
+      name: bountyHunterIdParam
+      in: path
+      required: true
+      schema:
+        type: string
+        pattern: ^\d{1,3}$
+        example: 123
+    bountyHunterName:
+      name: bountyHunterName
+      in: query
+      required: false
+      schema:
+        type: string
+        minLength: 5
+        maxLength: 30
+        example: Star Slayer
+    bountyHunterAge:
+      name: bountyHunterAge
+      in: query
+      required: false
+      schema:
+        type: integer
+        minimum: 18
+        maximum: 65
+        example: 35
+        description: Can't be younger than 18 and older than 65!
+    bountyHunterGeneral:
+      name: bountyHunterGeneral
+      in: query
+      required: false
+      schema:
+        type: boolean
+        description: Whether he's a general or not?
+        default: false
+    bountyHunterWeapon:
+      name: bountyHunterWeapon
+      in: query
+      required: false
+      schema:
+        type: string
+        enum: 
+          - MIND_CONTROL
+          - LASER_EYES
+          - TENTACLES_FOR_ARMS
+          - LASER_GUN
+          - PERSONAL_CHARM
+        example: PERSONAL_CHARM
+    
+
+
+  requestBodies: 
+    bountyHunterReqBod:
+      required: true
+      content: 
+        application/json: 
+          schema: 
+            $ref: '#/components/schemas/BountyHunter'
+
+
+
+servers:
+  - url: "https://virtserver.swaggerhub.com/BOUNTY-HUNTER/IntergalacticBountyHunterAPI/1.0.0"
