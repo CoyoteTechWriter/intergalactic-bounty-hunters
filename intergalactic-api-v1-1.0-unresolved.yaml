@@ -1,8 +1,8 @@
-openapi: 3.0.2
+caopenapi: 3.0.2
 info:
   version: '1.0'
   title: Intergalactic Bounty Hunter Register
-  description: an **official** API for professional, licensed Intergalactic Bounty Hunters under section 17.3 of the Intergalactic Bounty Hunter Act.
+  description: an **official** API specification for professional, licensed Intergalactic Bounty Hunters under section 17.3 of the Intergalactic Bounty Hunter Act.
 
 paths:
   /bounty-hunters:
