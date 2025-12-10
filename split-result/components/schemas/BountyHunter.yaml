@@ -1,0 +1,33 @@
+type: object
+properties:
+  bountyHunterId:
+    type: string
+    pattern: ^\d{1,3}$
+    description: ID with 1-3 digits
+    example: 123
+  bountyHunterName:
+    type: string
+    minLength: 5
+    maxLength: 30
+    example: Star Slayer
+    description: 5-30 characters
+  bountyHunterAge:
+    type: integer
+    minimum: 18
+    maximum: 65
+    example: 35
+    description: Can't be younger than 18 and older than 65!
+  bountyHunterGeneral:
+    type: boolean
+    description: >-
+      Intergalactic Bounty Hunter General Register. Necessary for obtaining a
+      license.
+  bountyHunterWeapon:
+    type: string
+    enum:
+      - MIND_CONTROL
+      - LASER_EYES
+      - TENTACLES_FOR_ARMS
+      - LASER_GUN
+      - PERSONAL_CHARM
+    example: PERSONAL_CHARM

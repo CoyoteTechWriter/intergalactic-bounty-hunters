@@ -1,0 +1,44 @@
+get:
+  summary: Retrieve Bounty Hunters
+  description: >-
+    The Official IBH (Intergalactic Bounty Hunter) Register. Access limited to
+    the authorized parties only!
+  tags:
+    - Bounty Hunters
+  operationId: getBountyHunter
+  responses:
+    '200':
+      description: Bounty Hunter(s) found!
+      content:
+        application/json:
+          schema:
+            $ref: ../components/schemas/BountyHunter.yaml
+    '404':
+      description: Not found!
+ 
+  parameters:
+    - $ref: ../components/parameters/bountyHunterId.yaml
+    - $ref: ../components/parameters/bountyHunterName.yaml
+    - $ref: ../components/parameters/bountyHunterAge.yaml
+    - $ref: ../components/parameters/bountyHunterGeneral.yaml
+    - $ref: ../components/parameters/bountyHunterWeapon.yaml
+post:
+  summary: Register a new Bounty Hunter
+  description: Register new Bounty Hunter in the IBH Register. Licensed Hunters only!
+  tags:
+    - Bounty Hunters
+  operationId: postBountyHunter
+  requestBody:
+    $ref: ../components/requestBodies/bountyHunterReqBod.yaml
+  responses:
+    '201':
+      description: Bounty Hunter Posted!
+      headers:
+        Location:
+          description: Location of the posted Bounty Hunter!
+          schema:
+            type: string
+            format: uri
+            example: https://example.com/{bountyHunterIdvar}
+    '400':
+      description: Request broken!

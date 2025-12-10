@@ -1,0 +1,12 @@
+name: bountyHunterWeapon
+in: query
+required: false
+schema:
+  type: string
+  enum:
+    - MIND_CONTROL
+    - LASER_EYES
+    - TENTACLES_FOR_ARMS
+    - LASER_GUN
+    - PERSONAL_CHARM
+  example: PERSONAL_CHARM
