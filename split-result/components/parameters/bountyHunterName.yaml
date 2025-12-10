@@ -1,0 +1,8 @@
+name: bountyHunterName
+in: query
+required: false
+schema:
+  type: string
+  minLength: 5
+  maxLength: 30
+  example: Star Slayer

@@ -1,0 +1,45 @@
+get:
+  summary: Get Bounty Hunter by Id
+  description: Get Bounty Hunter by a particular Id number
+  tags:
+    - Bounty Hunters
+  operationId: getBountyHunterById
+  parameters:
+    - $ref: ../components/parameters/bountyHunterIdParam.yaml
+  responses:
+    '200':
+      description: Found!
+      content:
+        application/json:
+          schema:
+            $ref: ../components/schemas/BountyHunter.yaml
+put:
+  summary: Update Bounty Hunter by Id
+  description: Updating Bounty hunters by their respective Ids
+  tags:
+    - Bounty Hunters
+  operationId: putBountyHunterById
+  parameters:
+    - $ref: ../components/parameters/bountyHunterIdParam.yaml
+  responses:
+    '200':
+      description: Updated!
+      content:
+        application/json:
+          schema:
+            $ref: ../components/schemas/BountyHunter.yaml
+delete:
+  summary: Retire a Hunter (permanently)
+  description: Get a Hunter off the register and let them enjoy their retirement
+  tags:
+    - Bounty Hunters
+  operationId: deleteBountyHunterById
+  parameters:
+    - $ref: ../components/parameters/bountyHunterIdParam.yaml
+  responses:
+    '204':
+      description: Deleted!
+      content:
+        application/json:
+          schema:
+            $ref: ../components/schemas/BountyHunter.yaml

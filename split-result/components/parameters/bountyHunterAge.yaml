@@ -1,0 +1,9 @@
+name: bountyHunterAge
+in: query
+required: false
+schema:
+  type: integer
+  minimum: 18
+  maximum: 65
+  example: 35
+  description: Can't be younger than 18 and older than 65!

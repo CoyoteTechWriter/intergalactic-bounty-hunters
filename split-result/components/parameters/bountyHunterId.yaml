@@ -1,0 +1,7 @@
+name: bountyHunterId
+in: query
+required: false
+schema:
+  type: string
+  pattern: ^\d{1,3}$
+  example: 123

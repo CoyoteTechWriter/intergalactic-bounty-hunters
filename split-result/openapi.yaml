@@ -1,0 +1,20 @@
+openapi: 3.0.3
+info:
+  version: '1.0'
+  license: 
+    name: freeware
+    url: 'https://github.com/CoyoteTechWriter/intergalactic-bounty-hunters'
+
+
+  title: Intergalactic Bounty Hunter Register
+  description: >-
+    an **official** API specification for professional, licensed Intergalactic
+    Bounty Hunters under section 17.3 of the Intergalactic Bounty Hunter Act.
+paths:
+  /bounty-hunters:
+    $ref: paths/bounty-hunters.yaml
+  /bounty-hunters/{bountyHunterIdParam}:
+    $ref: paths/bounty-hunters_{bountyHunterIdParam}.yaml
+servers:
+  - url: >-
+      https://virtserver.swaggerhub.com/BOUNTY-HUNTER/IntergalacticBountyHunterAPI/1.0.0

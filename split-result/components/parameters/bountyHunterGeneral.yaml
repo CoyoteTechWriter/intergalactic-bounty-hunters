@@ -1,0 +1,7 @@
+name: bountyHunterGeneral
+in: query
+required: false
+schema:
+  type: boolean
+  description: Whether he's a general or not?
+  default: false
